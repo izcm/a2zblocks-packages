@@ -12,8 +12,7 @@ type Props = {
   className?: string;
 };
 
-// merketplaceView is a heavy component and shouldnt rerender on every keystroke
-// so internal state is added. then render only happens on submit
+// internal state is added. then render only happens on submit
 
 export function TextInput({
   placeholder,

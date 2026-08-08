@@ -3,10 +3,16 @@ import { Result } from "./result.js";
 
 export async function fetchJSON<T>(
   url: string,
-  signal?: AbortSignal,
+  options?: {
+    headers?: HeadersInit;
+    signal?: AbortSignal;
+  },
 ): Promise<Result<T>> {
   try {
-    const res = await fetch(url, { signal });
+    const res = await fetch(url, {
+      headers: options?.headers,
+      signal: options?.signal,
+    });
     if (!res.ok) return { ok: false, error: await getResponseError(res) };
     return { ok: true, data: (await res.json()) as T };
   } catch (err) {

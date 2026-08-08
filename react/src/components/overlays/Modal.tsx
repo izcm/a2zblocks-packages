@@ -1,12 +1,17 @@
 import type { ReactNode } from "react";
 import { useEffect, useRef } from "react";
 import { FocusTrap } from "focus-trap-react";
+import { cn } from "@/lib/utils/cn.js";
 
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   escTxt?: string;
+  showCancelBtn?: boolean;
   selfManagesFocus?: boolean;
+  ariaLabel?: string;
+  ariaLabelledBy?: string;
+  className?: string;
   children: ReactNode;
 };
 
@@ -15,28 +20,17 @@ export function Modal({
   onClose,
   children,
   escTxt = "Close",
+  showCancelBtn = true,
   selfManagesFocus,
+  ariaLabel,
+  ariaLabelledBy,
+  className,
 }: ModalProps) {
   const lastFocusedRef = useRef<HTMLElement | null>(null);
 
-  // close on Escape always, close on X unless focus is on a non-numeric text input
+  // close on Escape
   const handler = (e: KeyboardEvent) => {
-    const target = e.target as HTMLElement;
-
-    const isNumeric =
-      (target as HTMLInputElement).dataset?.numeric !== undefined;
-    const typingText =
-      !isNumeric &&
-      (target.tagName === "INPUT" ||
-        target.tagName === "TEXTAREA" ||
-        target.isContentEditable);
-
     if (e.key === "Escape") {
-      onClose();
-      return;
-    }
-
-    if (!typingText && e.key.toLowerCase() === "x") {
       onClose();
     }
   };
@@ -62,31 +56,40 @@ export function Modal({
         fixed inset-0 z-[999] flex items-center justify-center
         bg-black/50 backdrop-blur-sm animate-fadeIn
       "
-      role="dialog"
       onClick={onClose}
     >
       <FocusTrap
         focusTrapOptions={{
-          initialFocus: selfManagesFocus ? false : "#modal-close-btn",
+          initialFocus:
+            selfManagesFocus || !showCancelBtn ? false : "#modal-close-btn",
         }}
       >
         <div
-          className="
-            flex flex-col gap-2
-            bg-primary/60 backdrop-blur-lg
-            border border-default
-            rounded-lg
-            shadow-lg p-2"
+          className={cn(
+            "flex flex-col gap-2",
+            "bg-card",
+            "border border-default",
+            "rounded-lg",
+            "shadow-lg p-2",
+            className,
+          )}
           onClick={(e) => e.stopPropagation()}
+          role="dialog"
+          aria-modal="true"
+          aria-label={ariaLabel}
+          aria-labelledby={ariaLabelledBy}
         >
           {children}
-          <button
-            id="modal-close-btn"
-            className="btn btn-secondary outline-none"
-            onClick={onClose}
-          >
-            {escTxt}
-          </button>
+
+          {showCancelBtn && (
+            <button
+              id="modal-close-btn"
+              className="btn btn-secondary outline-none"
+              onClick={onClose}
+            >
+              {escTxt}
+            </button>
+          )}
         </div>
       </FocusTrap>
     </div>
