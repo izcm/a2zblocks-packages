@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import { cn } from "@/lib/utils/cn.js";
+import { EnterIcon } from "@/lib/icons.js";
 
 type Props = {
   placeholder?: string;
@@ -10,6 +11,7 @@ type Props = {
   ref?: React.Ref<HTMLInputElement>;
   numeric?: boolean;
   className?: string;
+  submitLabel?: string;
 };
 
 // internal state is added. then render only happens on submit
@@ -22,6 +24,7 @@ export function TextInput({
   ref,
   numeric,
   className,
+  submitLabel,
 }: Props) {
   const [internal, setInternal] = useState(value ?? "");
   const [prevValue, setPrevValue] = useState(value);
@@ -33,34 +36,41 @@ export function TextInput({
   }
 
   return (
-    <input
-      ref={ref}
+    <div
       className={cn(
-        "px-4 py-2 w-full bg-black/10 text-muted rounded-lg border border-default",
+        "text-input flex items-center w-full rounded-lg border border-line",
         className,
       )}
-      placeholder={placeholder}
-      value={internal}
-      {...(numeric && {
-        inputMode: "decimal",
-        pattern: "[0-9.]*",
-        "data-numeric": true,
-      })}
-      onChange={(e) => {
-        const value = numeric
-          ? e.currentTarget.value.replace(/[^0-9.]/g, "")
-          : e.currentTarget.value;
-        setInternal(value);
-        onChange?.(value);
-      }}
-      onKeyDown={(e) => {
-        if (e.key === "Enter") {
-          e.preventDefault();
-          onSubmit?.(internal);
-        } else if (e.key === "Escape") {
-          setInternal("");
-        }
-      }}
-    />
+    >
+      <input
+        ref={ref}
+        className="min-w-0 flex-1 bg-transparent px-4 py-2 outline-none"
+        placeholder={placeholder}
+        value={internal}
+        onChange={(e) => {
+          const value = numeric
+            ? e.currentTarget.value.replace(/[^0-9.]/g, "")
+            : e.currentTarget.value;
+
+          setInternal(value);
+          onChange?.(value);
+        }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            onSubmit?.(internal);
+          } else if (e.key === "Escape") {
+            setInternal("");
+          }
+        }}
+      />
+
+      {internal !== (value ?? "") && submitLabel && (
+        <span className="mr-3 inline-flex shrink-0 items-center gap-1 text-xs text-muted">
+          <EnterIcon size={14} />
+          {submitLabel}
+        </span>
+      )}
+    </div>
   );
 }

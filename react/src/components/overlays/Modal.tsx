@@ -67,8 +67,8 @@ export function Modal({
         <div
           className={cn(
             "flex flex-col gap-2",
-            "bg-card",
-            "border border-default",
+            "bg-raised",
+            "border border-line",
             "rounded-lg",
             "shadow-lg p-2",
             className,

@@ -21,7 +21,7 @@ export function SegmentedControl<T extends string>({
   className,
 }: Props<T>) {
   return (
-    <div className={cn("flex border border-soft rounded-lg overflow-hidden", className)}>
+    <div className={cn("flex border border-faint rounded-lg overflow-hidden", className)}>
       {options.map((option) => {
         const active = option.value === value;
 
@@ -33,8 +33,8 @@ export function SegmentedControl<T extends string>({
             className={cn(
               "px-4 py-2 text-sm transition-colors cursor-pointer",
               active
-                ? "bg-primary text-surface font-medium"
-                : "text-muted hover:text-primary hover:bg-surface/30",
+                ? "bg-accent text-[var(--base)] font-medium"
+                : "text-muted hover:text-fg hover:bg-raised/30",
             )}
           >
             {option.label}

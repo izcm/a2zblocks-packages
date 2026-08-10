@@ -64,7 +64,7 @@ export function Popover({
       {open && (
         <div
           className={cn(
-            "absolute top-full mt-1 z-50 whitespace-nowrap p-2 bg-surface border border-default",
+            "absolute top-full mt-1 z-50 whitespace-nowrap p-2 bg-raised border border-line",
             align === "right" ? "right-0" : "left-0",
             contentClassName,
           )}

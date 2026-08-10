@@ -1,30 +1,25 @@
 @theme {
   /* --- backgrounds --- */
-  /* use as: bg-primary, bg-secondary, bg-surface, bg-card */
-  --color-primary: var(--bg-primary);
-  --color-secondary: var(--bg-secondary);
-  --color-surface: var(--bg-surface);
-  --color-card: var(--bg-card);
+  --color-base: var(--base);
+  --color-raised: var(--raised);
+  --color-lowered: color-mix(in oklab, var(--base) 92%, black);
 
   /* --- text --- */
-  /* use as: text-fg (full), text-subtle (secondary), text-muted (dim/disabled) */
-  --color-fg: var(--text-primary);
-  --color-subtle: var(--text-subtle);
-  --color-muted: var(--text-muted);
+  /* strength: fg (strongest) > subtle > muted > faint (very weak) */
+  --color-fg: var(--fg);
+  --color-subtle: var(--subtle);
+  --color-muted: var(--muted);
+  --color-faint: var(--faint);
 
   /* --- borders --- */
-  /* use as: border-default, border-soft */
-  --color-default: var(--border-default);
-  --color-soft: var(--border-soft);
+  --color-line: var(--line);
 
   /* --- accent --- */
-  /* use as: text-accent, bg-accent, border-accent (+ /opacity works) */
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-accent-weak: var(--accent-weak);
 
   /* --- status --- */
-  /* use as: text-success, text-warning, text-failure (+ -weak variants) */
   --color-success: var(--success);
   --color-success-weak: var(--success-weak);
   --color-warning: var(--warning);
@@ -47,18 +42,15 @@
 :root[data-theme="runtime"] {
   color-scheme: dark;
 
-  --bg-primary: #0b0b0e;
-  --bg-secondary: #1a1a20;
-  --bg-surface: #131316;
-  --bg-card: #17171c;
-  --bg-muted: rgba(120, 255, 180, 0.05);
+  --base: #0b0b0e;
+  --raised: #131316;
 
-  --text-primary: rgba(230, 235, 240, 0.94);
-  --text-subtle: rgba(195, 205, 215, 0.75);
-  --text-muted: rgba(165, 175, 185, 0.6);
+  --fg: rgba(230, 235, 240, 0.94);
+  --subtle: rgba(195, 205, 215, 0.75);
+  --muted: rgba(165, 175, 185, 0.6);
+  --faint: rgba(150, 160, 170, 0.4);
 
-  --border-default: rgba(120, 255, 180, 0.35);
-  --border-soft: rgba(120, 255, 180, 0.25);
+  --line: rgba(120, 255, 180, 0.35);
 
   --accent-strong: #66ffb2; /* rare, special */
   --accent: #49ca8a; /* normal primary */
@@ -82,18 +74,15 @@
 :root[data-theme="void"] {
   color-scheme: dark;
 
-  --bg-primary: #010208;
-  --bg-secondary: #060826; /* more blue */
-  --bg-surface: #0b0f29; /* noticeably lifted */
-  --bg-card: #0e1230;
-  --bg-muted: rgba(120, 140, 255, 0.12);
+  --base: #010208;
+  --raised: #0b0f29; /* noticeably lifted */
 
-  --text-primary: rgba(220, 222, 235, 0.95);
-  --text-subtle: rgba(190, 195, 225, 0.78);
-  --text-muted: rgba(170, 180, 220, 0.65);
+  --fg: rgba(220, 222, 235, 0.95);
+  --subtle: rgba(190, 195, 225, 0.78);
+  --muted: rgba(170, 180, 220, 0.65);
+  --faint: rgba(155, 165, 210, 0.42);
 
-  --border-default: rgba(120, 140, 255, 0.45);
-  --border-soft: rgba(120, 140, 255, 0.32);
+  --line: rgba(120, 140, 255, 0.45);
 
   --accent: #7c84ff;
   --accent-weak: rgba(124, 132, 255, 0.7);

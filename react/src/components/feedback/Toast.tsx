@@ -67,7 +67,7 @@ export function Toast({
   toastAction,
 }: ToastProps) {
   return (
-    <div className="flex items-start gap-3 w-[360px] rounded-xl border border-default bg-surface p-4 shadow-[var(--panel-shadow)]">
+    <div className="flex items-start gap-3 w-[360px] rounded-xl border border-line bg-raised p-4 shadow-[var(--panel-shadow)]">
       <div className="mt-1 h-2 w-2 rounded-full bg-accent" />
 
       <div className="flex-1">

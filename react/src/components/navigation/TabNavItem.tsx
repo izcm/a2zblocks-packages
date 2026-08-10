@@ -20,7 +20,7 @@ export function TabNavItem({
         "flex-1 py-2 text-center transition-colors duration-200",
         active
           ? "border-b-2 border-accent/60 text-accent"
-          : "border-soft hover:border-accent/30 text-muted",
+          : "border-faint hover:border-accent/30 text-muted",
         className?.(active),
       )}
     >

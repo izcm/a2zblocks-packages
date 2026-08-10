@@ -20,7 +20,7 @@ type Props = {
 export function ActionBar({ items, variant = "labeled", className }: Props) {
   const itemClasses =
     variant === "compact"
-      ? "w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-soft hover:scale-108 transition-transform flex items-center justify-center shrink-0"
+      ? "w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border border-faint hover:scale-108 transition-transform flex items-center justify-center shrink-0"
       : "btn btn-ghost flex items-center justify-center gap-3 w-full sm:w-auto py-3 px-6";
   const iconClasses = variant === "compact" ? "" : "w-4 h-4 opacity-80";
 

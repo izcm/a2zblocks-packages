@@ -15,14 +15,14 @@ export function GalleryItem({ image, imgWidth = 250, imgHeight = 250, title, det
       <Image
         src={image}
         alt={title ?? ''}
-        className="border-b border-default object-cover bg-primary"
+        className="border-b border-line object-cover bg-base"
         width={imgWidth}
         height={imgHeight}
         loading="eager"
       />
       <div className="flex flex-col">
         {title && (
-          <span className="h-[40px] grid place-items-center border-b border-default">{title}</span>
+          <span className="h-[40px] grid place-items-center border-b border-line">{title}</span>
         )}
         <div className="transition-colors">{details}</div>
       </div>

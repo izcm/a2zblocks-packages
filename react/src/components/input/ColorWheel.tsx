@@ -121,7 +121,7 @@ export const ColorWheel = ({ onChange, size = 200 }: Props) => {
           width: size,
           height: size,
           border:
-            "1px solid color-mix(in oklab, var(--border-default) 80%, var(--accent) 20%)",
+            "1px solid color-mix(in oklab, var(--border-line) 80%, var(--accent) 20%)",
           boxShadow: `
             0 2px 8px rgba(109, 117, 255, 0.15),
             inset 0 1px 0 rgba(255, 255, 255, 0.05),

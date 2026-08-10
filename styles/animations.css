@@ -45,11 +45,11 @@
 
 @keyframes freshPulse {
   from {
-    background-color: color-mix(in oklab, var(--accent) 35%, var(--bg-surface));
+    background-color: color-mix(in oklab, var(--accent) 35%, var(--raised));
   }
 
   to {
-    background-color: var(--bg-surface);
+    background-color: var(--raised);
   }
 }
 

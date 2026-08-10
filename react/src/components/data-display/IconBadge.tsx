@@ -10,7 +10,7 @@ export type IconBadgeItem = {
 
 export const IconBadge = ({ label, icon, className }: IconBadgeItem) => (
   <div className={cn("flex flex-col items-center gap-2", className)}>
-    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-black/40 border border-soft/16">
+    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-black/40 border border-faint">
       {icon ?? (
         <span className="text-lg font-semibold text-white">
           {label[0].toUpperCase()}

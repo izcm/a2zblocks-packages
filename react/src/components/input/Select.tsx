@@ -7,7 +7,7 @@ interface SelectProps {
 export function Select({ options, value, onChange }: SelectProps) {
   return (
     <select
-      className="border border-default rounded px-2 py-1 text-sm bg-surface"
+      className="border border-line rounded px-2 py-1 text-sm bg-raised"
       value={value}
       onChange={e => onChange?.(e.target.value)}
     >

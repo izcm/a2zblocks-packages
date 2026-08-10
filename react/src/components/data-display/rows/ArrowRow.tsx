@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils/cn.js";
 
 export const defaultArrowClasses = {
-  base: "rounded-lg bg-surface border border-soft transition cursor-pointer",
+  base: "rounded-lg bg-raised border border-faint transition cursor-pointer",
   hover: "hover:bg-accent/10",
   selected: "bg-accent/25",
 };
