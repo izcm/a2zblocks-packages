@@ -1,10 +1,10 @@
 import { Collection, Filter, Document as MongoDoc, WithId } from "mongodb";
 
-import { PageQuery, ByKey, Countable, Pageable } from "./types.js";
+import { PageQuery, ByKey, Countable, Pageable } from "../types.js";
 
-import { findPageGeneric } from "./pagination/find-page-generic.js";
-import { mapToRepoQuery } from "./to-repo-query.js";
-import { FieldConfig } from "./field-config.js";
+import { findPageGeneric } from "../pagination/find-page-generic.js";
+import { mapToRepoQuery } from "../pagination/to-repo-query.js";
+import { FieldConfig } from "../filters/field-config.js";
 
 export const makeReadRepo = <TDoc extends MongoDoc, TKey>(
   getCol: () => Collection<TDoc>,

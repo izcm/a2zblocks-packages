@@ -1,10 +1,10 @@
 import type { Collection, Filter, Document as MongoDoc } from "mongodb";
 
-import type { PageQuery } from "./types.js";
+import type { GenericPageArgs } from "./types.js";
 
-import type { GenericPageArgs } from "./pagination/types.js";
-import type { FieldConfig } from "./field-config.js";
-import { buildMongoFilters } from "./build-mongo-filters.js";
+import type { PageQuery } from "../types.js";
+import type { FieldConfig } from "../filters/field-config.js";
+import { buildMongoFilters } from "../filters/build-mongo-filters.js";
 
 export function mapToRepoQuery<TDoc extends MongoDoc>(
   pageQuery: PageQuery,

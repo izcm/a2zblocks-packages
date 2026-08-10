@@ -6,7 +6,7 @@ import {
   Filter,
 } from "mongodb";
 
-import { WithTimestamps } from "./types.js";
+import { WithTimestamps } from "../types.js";
 
 /**
  * @param getCol collection for write operation

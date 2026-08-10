@@ -19,6 +19,12 @@ export const cursorTag = (value: string | number): "s" | "n" =>
 export const encodeCursor = (value: string | number, id: ObjectId) =>
   `${cursorTag(value)}${value}_${id.toString()}`;
 
+// findPageGeneric adds additional field isNull
+//  value is set to:
+// -> 1 if field *NOT* set on record
+// -> 0 if field is set
+//
+// To have values where sortField value null on bottom of page
 export const buildSortSpec = (field: string, dir: CursorDir) => ({
   [field]: dir,
   _id: dir,
