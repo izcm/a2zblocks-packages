@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils/cn.js";
 export type GalleryProps<T> = {
   // items and selection
   items: T[];
+  getId: (item: T) => string;
   selected?: T;
   onSelect?: (item: T) => void;
   onEnter?: (item: T) => void;
@@ -24,8 +25,9 @@ export type GalleryProps<T> = {
   hasMore?: boolean;
 };
 
-export function Gallery<T extends { id: string }>({
+export function Gallery<T>({
   items,
+  getId,
   galleryItem,
   selected,
   onSelect,
@@ -59,27 +61,19 @@ export function Gallery<T extends { id: string }>({
   useEffect(() => {
     if (!selected || !onLoadMore || isLoading || !hasMore) return;
 
-    const index = items.findIndex((i) => i.id === selected.id);
+    const index = items.findIndex((i) => getId(i) === getId(selected));
     if (index === -1) return;
 
     if (items.length - index < 5) {
       onLoadMore();
     }
-  }, [
-    selected?.id,
-    items.length,
-    hasMore,
-    isLoading,
-    items,
-    onLoadMore,
-    selected,
-  ]);
+  }, [selected, getId, items.length, hasMore, isLoading, items, onLoadMore]);
 
   useEffect(() => {
     if (!selected || !ref?.current) return;
 
     const el = ref.current.querySelector(
-      `[data-id="${selected.id}"]`,
+      `[data-id="${getId(selected)}"]`,
     ) as HTMLElement | null;
 
     if (!el) return;
@@ -112,18 +106,18 @@ export function Gallery<T extends { id: string }>({
         <ArrowList
           ref={ref}
           items={items}
-          getId={(c) => c.id}
-          selectedId={selected?.id}
+          getId={getId}
+          selectedId={selected ? getId(selected) : undefined}
           onSelect={(c) => onSelect?.(c)}
           className={`${galleryClasses.arrowList} min-h-0 flex-1 rounded-lg p-1`}
         >
           {({ item, isSelected, onSelect }) => (
             <ArrowRow
-              key={item.id}
+              key={getId(item)}
               isSelected={isSelected}
               onSelect={onSelect}
               onEnter={onEnter ? () => onEnter(item) : undefined}
-              dataId={item.id}
+              dataId={getId(item)}
               className={cn(
                 defaultArrowClasses.base,
 
