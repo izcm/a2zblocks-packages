@@ -1,31 +1,25 @@
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+*::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
   background: transparent;
-  margin: 2px 4px;
+  margin: 2px;
 }
 
-::-webkit-scrollbar-thumb {
-  background: color-mix(in oklab, var(--accent) 50%, transparent);
-  box-shadow: 0 0 8px color-mix(in oklab, var(--accent) 25%, transparent);
-  border-radius: 6px;
-  border: 2px solid var(--base);
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in oklab, var(--accent) 45%, transparent);
+  border-radius: 999px;
   min-height: 24px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(
-    135deg,
-    color-mix(in oklab, var(--accent) 65%, transparent),
-    color-mix(in oklab, var(--accent) 45%, transparent)
-  );
+*::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in oklab, var(--accent) 75%, transparent);
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+*::-webkit-scrollbar-corner {
+  background: transparent;
 }
 
 .scrollbar-hide {
@@ -33,21 +27,12 @@
   scrollbar-width: none;
 }
 
-input[type='checkbox'],
-input[type='radio'],
-input[type='range'] {
-  accent-color: var(--accent);
-}
-
-::-webkit-scrollbar-corner {
-  background: var(--base);
-}
-
-.no-scrollbar::-webkit-scrollbar {
+.scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+input[type="checkbox"],
+input[type="radio"],
+input[type="range"] {
+  accent-color: var(--accent);
 }

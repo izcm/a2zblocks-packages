@@ -1,3 +1,17 @@
 .pixelated {
   image-rendering: pixelated;
 }
+
+/* nav item: full-width label + trailing icon (IconBtn, IconLink).
+   no-underline is a no-op on <button>, strips the default <a> underline. */
+@utility nav-item {
+  @apply flex items-center justify-between cursor-pointer gap-3 w-full text-sm text-neutral-400 no-underline transition-colors hover:text-white;
+}
+
+@utility nav-item-label {
+  @apply flex items-center gap-3;
+}
+
+@utility nav-item-icon {
+  @apply h-4 w-4 shrink-0 text-accent;
+}

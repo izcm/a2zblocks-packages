@@ -1,6 +1,6 @@
 import { ReactNode, RefObject, useEffect } from "react";
 
-import { ArrowRow, defaultArrowClasses } from "../data-display/index.js";
+import { ArrowRow } from "../data-display/index.js";
 import { ArrowList } from "../navigation/index.js";
 import { cn } from "@/lib/utils/cn.js";
 
@@ -16,13 +16,14 @@ export type GalleryProps<T> = {
   galleryItem: (item: T) => ReactNode;
   isFresh?: (item: T) => boolean;
   galleryView?: "list" | "card";
-  itemClassName?: (isSelected: boolean) => string;
+  itemClassName?: (isSelected: boolean, isFesh?: boolean) => string;
 
   // ref + pagination
   ref?: RefObject<HTMLUListElement | null>;
   onLoadMore?: () => void;
   isLoading?: boolean;
   hasMore?: boolean;
+  bareRows?: boolean; // strip default css classes
 };
 
 export function Gallery<T>({
@@ -39,6 +40,7 @@ export function Gallery<T>({
   onLoadMore,
   isLoading,
   hasMore,
+  bareRows,
 }: GalleryProps<T>) {
   // load more on 'regular' scroll
   useEffect(() => {
@@ -118,21 +120,8 @@ export function Gallery<T>({
               onSelect={onSelect}
               onEnter={onEnter ? () => onEnter(item) : undefined}
               dataId={getId(item)}
-              className={cn(
-                defaultArrowClasses.base,
-
-                // default
-                !isSelected && !isFresh?.(item) && defaultArrowClasses.hover,
-
-                // fresh
-                isFresh?.(item) && "fresh",
-
-                // selected
-                isSelected && defaultArrowClasses.selected,
-
-                itemClassName?.(isSelected),
-              )}
-              bare // strip default classes
+              className={cn(itemClassName?.(isSelected, isFresh?.(item)))}
+              bare={bareRows} // strip default classes
             >
               {galleryItem(item)}
             </ArrowRow>

@@ -2,11 +2,9 @@ import type { AnchorHTMLAttributes, ReactNode } from "react";
 
 import { cn } from "@/lib/utils/cn.js";
 
-export const DEFAULT_ICON_CLASSES = "flex items-center h-4 w-4 shrink-0 text-accent";
-
 const DefaultExternalLinkIcon = (
   <svg
-    className={DEFAULT_ICON_CLASSES}
+    className="nav-item-icon"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -31,13 +29,9 @@ export function IconLink({ children, className, icon = DefaultExternalLinkIcon, 
       target="_blank"
       rel="noopener noreferrer"
       {...props}
-      className={cn(
-        "flex items-center justify-between gap-3 w-full",
-        "text-sm text-neutral-400 no-underline transition-colors hover:text-white",
-        className,
-      )}
+      className={cn("nav-item", className)}
     >
-      <span className="flex items-center gap-3">{children}</span>
+      <span className="nav-item-label">{children}</span>
       {icon}
     </a>
   );

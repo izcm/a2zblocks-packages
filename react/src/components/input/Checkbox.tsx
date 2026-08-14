@@ -1,44 +1,28 @@
-interface CheckboxProps {
-  label: string
-  checked?: boolean
-  onChange?: (checked: boolean) => void
-}
+import { cn } from "@/lib/utils/cn.js";
 
-export function Checkbox({ label, checked, onChange }: CheckboxProps) {
+type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
+  label?: string;
+};
+
+export function Checkbox({ label, className, ...props }: CheckboxProps) {
   return (
-    <label className="flex items-center gap-3 cursor-pointer select-none relative">
-      <div className="relative w-4 h-4 flex items-center justify-center">
-        <input
-          type="checkbox"
-          checked={checked}
-          onChange={e => onChange?.(e.target.checked)}
-          className="
-            peer w-4 h-4 rounded-sm 
-            border border-accent/50 
-            bg-transparent
-            cursor-pointer 
-            appearance-none
-            transition-all
+    <label className="group flex items-center gap-3 cursor-pointer">
+      <input
+        {...props}
+        type="checkbox"
+        className={cn(
+          "size-4 cursor-pointer rounded border-line accent-accent",
+          "transition-all duration-150",
+          "group-hover:border-accent group-hover:ring-2 group-hover:ring-accent/15",
+          className,
+        )}
+      />
 
-            hover:border-accent/80
-            checked:border-accent
-          "
-        />
-
-        {/* CHECKMARK */}
-        <span
-          className="
-            absolute text-accent text-[14px] leading-none
-            pointer-events-none
-            opacity-0 peer-checked:opacity-100 
-            transition-opacity
-          "
-        >
-          ✓
+      {label && (
+        <span className="text-sm text-subtle transition-colors group-hover:text-fg">
+          {label}
         </span>
-      </div>
-
-      <span className="text-sm text-subtle peer-hover:text-accent transition-colors">{label}</span>
+      )}
     </label>
-  )
+  );
 }
