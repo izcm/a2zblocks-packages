@@ -6,16 +6,20 @@ import { findPageGeneric } from "../pagination/find-page-generic.js";
 import { mapToRepoQuery } from "../pagination/to-repo-query.js";
 import { FieldConfig } from "../filters/field-config.js";
 
-export const makeReadRepo = <TDoc extends MongoDoc, TKey, TOut extends object>(
+export const makeReadRepo = <
+  TDoc extends MongoDoc,
+  TKey,
+  TEntity extends object,
+>(
   getCol: () => Collection<TDoc>,
   keyToFilter: (k: TKey) => Filter<TDoc>,
-  map: (doc: WithId<TDoc>) => TOut,
+  toEntity: (doc: WithId<TDoc>) => TEntity,
   fieldConfig?: FieldConfig,
 ) => {
   return {
     async findByKey(key: TKey) {
       const doc = await getCol().findOne(keyToFilter(key));
-      return doc ? map(doc) : null;
+      return doc ? toEntity(doc) : null;
     },
 
     async findByKeys(keys: TKey[]) {
@@ -25,7 +29,7 @@ export const makeReadRepo = <TDoc extends MongoDoc, TKey, TOut extends object>(
         .find({ $or: keys.map(keyToFilter) } as Filter<TDoc>)
         .toArray();
 
-      return docs.map(map);
+      return docs.map(toEntity);
     },
 
     async findPage(pageQuery: PageQuery) {
@@ -37,7 +41,7 @@ export const makeReadRepo = <TDoc extends MongoDoc, TKey, TOut extends object>(
 
       return {
         ...page,
-        items: page.items.map(map),
+        items: page.items.map(toEntity),
       };
     },
 
@@ -49,5 +53,5 @@ export const makeReadRepo = <TDoc extends MongoDoc, TKey, TOut extends object>(
       );
       return getCol().countDocuments(baseQuery);
     },
-  } satisfies ByKey<TOut, TKey> & Pageable<TOut> & Countable;
+  } satisfies ByKey<TEntity, TKey> & Pageable<TEntity> & Countable;
 };

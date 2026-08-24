@@ -39,6 +39,11 @@ export function buildCursorFilter({
 
   const tag = cursor[0];
   const [rawVal, rawId] = cursor.slice(1).split("_");
+
+  if (!rawVal || !rawId || !ObjectId.isValid(rawId)) {
+    throw new Error("Invalid cursor");
+  }
+
   const value = tag === "s" ? rawVal : Number(rawVal);
   const id = new ObjectId(rawId);
 

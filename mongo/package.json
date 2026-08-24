@@ -7,6 +7,9 @@
   ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@a2zb/types": "file:../types"
+  },
   "peerDependencies": {
     "mongodb": "^7"
   },
