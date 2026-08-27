@@ -14,7 +14,7 @@ body,
 :focus-visible {
   outline: none;
   box-shadow:
-    0 0 0 2px var(--base),
+    0 0 0 2px var(--ground),
     0 0 0 4px color-mix(in oklab, var(--accent) 80%, white);
 }
 

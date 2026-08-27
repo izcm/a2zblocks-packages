@@ -20,7 +20,7 @@
     "sonner": "^2.0.7"
   },
   "devDependencies": {
-    "@a2zb/styles": "workspace:*",
+    "@a2zb/styles": "file:../styles",
     "@tailwindcss/vite": "^4",
     "@testing-library/react": "^16.3.2",
     "@types/node": "^24",

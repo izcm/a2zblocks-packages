@@ -3,15 +3,25 @@ import { useEffect, useRef } from "react";
 import { FocusTrap } from "focus-trap-react";
 import { cn } from "@/lib/utils/cn.js";
 
+export const defaultModalClasses = [
+  "flex flex-col gap-2",
+  "bg-raised",
+  "border border-line",
+  "rounded-lg",
+  "shadow-lg p-2",
+].join(" ");
+
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   escTxt?: string;
-  showCancelBtn?: boolean;
+  hideCancelBtn?: boolean;
   selfManagesFocus?: boolean;
   ariaLabel?: string;
   ariaLabelledBy?: string;
   className?: string;
+  bare?: boolean;
+  noOverlay?: boolean;
   children: ReactNode;
 };
 
@@ -20,11 +30,13 @@ export function Modal({
   onClose,
   children,
   escTxt = "Close",
-  showCancelBtn = true,
+  hideCancelBtn = false,
   selfManagesFocus,
   ariaLabel,
   ariaLabelledBy,
   className,
+  bare = false,
+  noOverlay = false,
 }: ModalProps) {
   const lastFocusedRef = useRef<HTMLElement | null>(null);
 
@@ -52,27 +64,20 @@ export function Modal({
 
   return (
     <div
-      className="
-        fixed inset-0 z-[999] flex items-center justify-center
-        bg-black/50 backdrop-blur-sm animate-fadeIn
-      "
+      className={cn(
+        "fixed inset-0 z-[999] flex items-center justify-center",
+        !noOverlay && "bg-black/50 backdrop-blur-sm animate-fadeIn",
+      )}
       onClick={onClose}
     >
       <FocusTrap
         focusTrapOptions={{
           initialFocus:
-            selfManagesFocus || !showCancelBtn ? false : "#modal-close-btn",
+            selfManagesFocus || hideCancelBtn ? false : "#modal-close-btn",
         }}
       >
         <div
-          className={cn(
-            "flex flex-col gap-2",
-            "bg-raised",
-            "border border-line",
-            "rounded-lg",
-            "shadow-lg p-2",
-            className,
-          )}
+          className={cn(!bare && defaultModalClasses, className)}
           onClick={(e) => e.stopPropagation()}
           role="dialog"
           aria-modal="true"
@@ -81,7 +86,7 @@ export function Modal({
         >
           {children}
 
-          {showCancelBtn && (
+          {!hideCancelBtn && (
             <button
               id="modal-close-btn"
               className="btn btn-secondary outline-none"

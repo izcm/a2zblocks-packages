@@ -12,6 +12,7 @@ type Props = {
   numeric?: boolean;
   className?: string;
   submitLabel?: string;
+  startIcon?: React.ReactNode;
 };
 
 // internal state is added. then render only happens on submit
@@ -25,6 +26,7 @@ export function TextInput({
   numeric,
   className,
   submitLabel,
+  startIcon,
 }: Props) {
   const [internal, setInternal] = useState(value ?? "");
   const [prevValue, setPrevValue] = useState(value);
@@ -42,6 +44,10 @@ export function TextInput({
         className,
       )}
     >
+      {startIcon && (
+        <span className="ml-3 shrink-0 text-muted">{startIcon}</span>
+      )}
+
       <input
         ref={ref}
         className="min-w-0 flex-1 px-4 py-2 outline-none"

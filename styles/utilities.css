@@ -2,10 +2,15 @@
   image-rendering: pixelated;
 }
 
+/* flex + center on both axes */
+@utility flex-center {
+  @apply flex items-center justify-center;
+}
+
 /* nav item: full-width label + trailing icon (IconBtn, IconLink).
    no-underline is a no-op on <button>, strips the default <a> underline. */
 @utility nav-item {
-  @apply flex items-center justify-between cursor-pointer gap-3 w-full text-sm text-neutral-400 no-underline transition-colors hover:text-white;
+  @apply flex items-center justify-between gap-3 w-full text-sm text-fg no-underline transition-colors hover:text-accent cursor-pointer;
 }
 
 @utility nav-item-label {
@@ -14,4 +19,24 @@
 
 @utility nav-item-icon {
   @apply h-4 w-4 shrink-0 text-accent;
+}
+
+@utility line {
+  @apply bg-line h-px w-full;
+}
+
+/* raised surface with a faint border — dropdowns, panels */
+@utility raised-outline {
+  @apply rounded-lg bg-raised border border-faint;
+}
+
+/* extra-wide letter-spacing beyond tailwind's tracking-widest (0.1em) */
+.tracking-lg {
+  letter-spacing: 0.04em;
+}
+.tracking-xl {
+  letter-spacing: 0.08em;
+}
+.tracking-2xl {
+  letter-spacing: 0.15em;
 }

@@ -1,0 +1,28 @@
+{
+  "name": "@a2zb/node",
+  "version": "1.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@a2zb/lib": "file:../lib"
+  },
+  "devDependencies": {
+    "@types/node": "^24",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.9"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc",
+    "test": "vitest run"
+  }
+}

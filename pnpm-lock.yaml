@@ -15,12 +15,20 @@ importers:
   abis: {}
 
   lib:
+    dependencies:
+      '@a2zb/types':
+        specifier: file:../types
+        version: link:../types
     devDependencies:
       vitest:
         specifier: ^4.1.9
         version: 4.1.9(@types/node@24.13.3)(happy-dom@15.11.7)(jsdom@29.1.1(@noble/hashes@1.8.0))(vite@8.0.16(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0))
 
   mongo:
+    dependencies:
+      '@a2zb/types':
+        specifier: file:../types
+        version: link:../types
     devDependencies:
       '@types/node':
         specifier: ^24
@@ -60,6 +68,22 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
 
+  node:
+    dependencies:
+      '@a2zb/lib':
+        specifier: file:../lib
+        version: link:../lib
+    devDependencies:
+      '@types/node':
+        specifier: ^24
+        version: 24.13.3
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+      vitest:
+        specifier: ^4.1.9
+        version: 4.1.9(@types/node@24.13.3)(happy-dom@15.11.7)(jsdom@29.1.1(@noble/hashes@1.8.0))(vite@8.0.16(@types/node@24.13.3)(esbuild@0.28.1)(jiti@2.7.0))
+
   react:
     dependencies:
       '@a2zb/lib':
@@ -79,7 +103,7 @@ importers:
         version: 3.6.0
     devDependencies:
       '@a2zb/styles':
-        specifier: workspace:*
+        specifier: file:../styles
         version: link:../styles
       '@tailwindcss/vite':
         specifier: ^4
@@ -162,6 +186,12 @@ importers:
         version: 2.19.5(@tanstack/query-core@5.101.4)(@tanstack/react-query@5.101.4(react@19.2.7))(@types/react@19.2.17)(bufferutil@4.1.0)(react@19.2.7)(typescript@6.0.3)(utf-8-validate@5.0.10)(viem@2.55.2(bufferutil@4.1.0)(typescript@6.0.3)(utf-8-validate@5.0.10)(zod@3.25.76))(zod@3.25.76)
 
   styles: {}
+
+  types:
+    devDependencies:
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
 
   viem:
     devDependencies:

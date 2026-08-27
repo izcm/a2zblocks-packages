@@ -14,7 +14,7 @@ export function GalleryItem({ image, imgWidth = 250, imgHeight = 250, title, det
       <img
         src={image}
         alt={title ?? ''}
-        className="border-b border-line object-cover bg-base"
+        className="border-b border-line object-cover bg-ground"
         width={imgWidth}
         height={imgHeight}
         loading="eager"

@@ -4,6 +4,8 @@ packages:
   - "abis"
   - "styles"
   - "lib"
+  - "node"
+  - "types"
   - "viem"
   - "react-wagmi"
   - "mongo"

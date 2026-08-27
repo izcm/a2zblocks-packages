@@ -1,8 +1,8 @@
 @theme {
   /* --- backgrounds --- */
-  --color-base: var(--base);
+  --color-ground: var(--ground);
   --color-raised: var(--raised);
-  --color-lowered: color-mix(in oklab, var(--base) 92%, black);
+  --color-lowered: color-mix(in oklab, var(--ground) 92%, black);
 
   /* --- text --- */
   /* strength: fg (strongest) > subtle > muted > faint (very weak) */
@@ -42,7 +42,7 @@
 :root[data-theme="runtime"] {
   color-scheme: dark;
 
-  --base: #0b0b0e;
+  --ground: #0b0b0e;
   --raised: #131316;
 
   --fg: rgba(230, 235, 240, 0.94);
@@ -74,7 +74,7 @@
 :root[data-theme="void"] {
   color-scheme: dark;
 
-  --base: #010208;
+  --ground: #010208;
   --raised: #0b0f29; /* noticeably lifted */
 
   --fg: rgba(220, 222, 235, 0.95);

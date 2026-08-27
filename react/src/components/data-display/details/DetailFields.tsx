@@ -1,29 +1,13 @@
 import { ReactNode } from "react";
 
-import { cn } from "@/lib/utils/cn.js";
+import { truncateHex, type Hex } from "@a2zb/lib";
+
+import { Copyable } from "../Copyable.js";
 
 export type DetailField<T> = {
   label: string;
   getValue: (item: T) => ReactNode;
-  className?: string;
 };
-
-function DetailRow({
-  label,
-  value,
-  className,
-}: {
-  label: string;
-  value: ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className="flex items-center justify-between gap-4">
-      <dt className="text-sm text-muted">{label}</dt>
-      <dd className={cn("text-sm font-medium text-fg", className)}>{value}</dd>
-    </div>
-  );
-}
 
 export function DetailFields<T>({
   data,
@@ -34,14 +18,19 @@ export function DetailFields<T>({
 }) {
   return (
     <>
-      {fields.map((field) => (
-        <DetailRow
-          key={field.label}
-          label={field.label}
-          value={field.getValue(data)}
-          className={field.className}
-        />
+      {fields.map((f) => (
+        <div key={f.label} className="flex items-center justify-between">
+          <dt className="text-sm text-muted">{f.label}</dt>
+          <dd className="text-sm font-medium text-fg">{f.getValue(data)}</dd>
+        </div>
       ))}
     </>
   );
 }
+
+/** Ready-made getValue for hex values: truncated + click-to-copy. */
+export const HexDetailField = (value: Hex, className?: string) => (
+  <Copyable className={className} value={value}>
+    {truncateHex(value)}
+  </Copyable>
+);
