@@ -118,7 +118,13 @@ function SelectDemo() {
 function TextInputDemo() {
   const [value, setValue] = useState("");
   return (
-    <TextInput placeholder="type something" value={value} onChange={setValue} />
+    <TextInput
+      value={value}
+      input={{
+        placeholder: "type something",
+        onChange: (e) => setValue(e.target.value),
+      }}
+    />
   );
 }
 

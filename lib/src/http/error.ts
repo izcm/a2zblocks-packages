@@ -3,7 +3,7 @@ export async function getResponseError(res: Response): Promise<string> {
 
   try {
     const json = JSON.parse(text);
-    return json.message ?? JSON.stringify(json);
+    return json.error ?? json.message ?? JSON.stringify(json);
   } catch {
     return text;
   }

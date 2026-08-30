@@ -3,7 +3,7 @@ import { Result } from "./result.js";
 
 export async function fetchJSON<T>(
   url: string,
-  options: RequestInit,
+  options: RequestInit = {},
 ): Promise<Result<T>> {
   try {
     const res = await fetch(url, options);

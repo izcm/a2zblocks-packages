@@ -1,4 +1,5 @@
 import { KeyboardEvent, MouseEvent, useState } from "react";
+import { cn } from "@/lib/utils/cn.js";
 
 type CopyableProps = {
   value: string;
@@ -19,8 +20,9 @@ export function Copyable({ value, children, className = "" }: CopyableProps) {
   }
 
   return (
-    <span
+    <div
       onClick={handleCopy}
+      role="button"
       tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
@@ -28,18 +30,18 @@ export function Copyable({ value, children, className = "" }: CopyableProps) {
           handleCopy(e);
         }
       }}
-      className={`
-        cursor-pointer
-        text-accent
-        underline underline-offset-2 decoration-dotted
-        hover:decoration-solid
-        hover:text-accent-strong
-        transition-colors
-        ${className}
-        `}
+      className={cn(
+        "cursor-pointer",
+        "text-accent",
+        "underline underline-offset-2 decoration-dotted",
+        "hover:decoration-solid",
+        "hover:text-accent-strong",
+        "transition-colors",
+        className,
+      )}
       title="Click to copy"
     >
       {copied ? "copied" : (children ?? value)}
-    </span>
+    </div>
   );
 }

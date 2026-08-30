@@ -4,29 +4,27 @@ import { cn } from "@/lib/utils/cn.js";
 import { EnterIcon } from "@/lib/icons.js";
 
 type Props = {
-  placeholder?: string;
   value?: string;
-  onChange?: (value: string) => void;
   onSubmit?: (value: string) => void;
   ref?: React.Ref<HTMLInputElement>;
   numeric?: boolean;
   className?: string;
   submitLabel?: string;
   startIcon?: React.ReactNode;
+  input?: React.ComponentProps<"input">;
 };
 
 // internal state is added. then render only happens on submit
 
 export function TextInput({
-  placeholder,
   value,
-  onChange,
   onSubmit,
   ref,
   numeric,
   className,
   submitLabel,
   startIcon,
+  input,
 }: Props) {
   const [internal, setInternal] = useState(value ?? "");
   const [prevValue, setPrevValue] = useState(value);
@@ -49,9 +47,12 @@ export function TextInput({
       )}
 
       <input
+        {...input}
         ref={ref}
-        className="min-w-0 flex-1 px-4 py-2 outline-none"
-        placeholder={placeholder}
+        className={cn(
+          "min-w-0 flex-1 px-4 py-2 outline-none",
+          input?.className,
+        )}
         value={internal}
         onChange={(e) => {
           const value = numeric
@@ -59,7 +60,8 @@ export function TextInput({
             : e.currentTarget.value;
 
           setInternal(value);
-          onChange?.(value);
+          e.target.value = value;
+          input?.onChange?.(e);
         }}
         onKeyDown={(e) => {
           if (e.key === "Enter") {
@@ -68,6 +70,8 @@ export function TextInput({
           } else if (e.key === "Escape") {
             setInternal("");
           }
+
+          input?.onKeyDown?.(e);
         }}
       />
 

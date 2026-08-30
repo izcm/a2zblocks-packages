@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils/cn.js";
 
 const DefaultExternalLinkIcon = (
   <svg
-    className="nav-item-icon"
+    className="h-4 w-4 shrink-0 text-accent"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
@@ -29,9 +29,9 @@ export function IconLink({ children, className, icon = DefaultExternalLinkIcon, 
       target="_blank"
       rel="noopener noreferrer"
       {...props}
-      className={cn("nav-item", className)}
+      className={cn("flex btn justify-between text-sm text-fg no-underline", className)}
     >
-      <span className="nav-item-label">{children}</span>
+      <div className="flex items-center gap-3">{children}</div>
       {icon}
     </a>
   );
